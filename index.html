@@ -11,6 +11,7 @@
       src="https://kit.fontawesome.com/4acc7c71d7.js"
       crossorigin="anonymous"
     ></script>
+    <script src="main.js" defer></script>
   </head>
 
   <body>
@@ -26,30 +27,41 @@
     <!--canvas&color-->
     <div class="canvas_colors">
       <canvas></canvas>
-      <input type="range" />
+      <input
+        class="lineWidth"
+        type="range"
+        min="1"
+        max="10"
+        value="5"
+        step="1"
+      />
       <div class="colors">
         <div class="color" style="background-color: #fc5c65"></div>
         <div class="color" style="background-color: #fd9644"></div>
         <div class="color" style="background-color: #fed330"></div>
         <div class="color" style="background-color: #26de81"></div>
+        <div class="color" style="background-color: #2bcbba"></div>
         <div class="color" style="background-color: #45aaf2"></div>
         <div class="color" style="background-color: #4b7bec"></div>
         <div class="color" style="background-color: #a55eea"></div>
+        <div class="color" style="background-color: #d1d8e0"></div>
         <div class="color" style="background-color: #4b6584"></div>
       </div>
     </div>
 
     <!--side_right_menu-->
     <div class="rightBtns">
-      <i class="fa-solid fa-bars"></i>
-      <div class="menuBtns">
-        <i class="fa-solid fa-xmark"></i>
+      <div class="moreBtn">
+        <i class="fa-solid fa-bars"></i>
+      </div>
+      <div class="menuBtns hide">
+        <i id="menuClosed" class="fa-solid fa-xmark"></i>
         <div class="additoryBtns">
           <input type="text" id="text" placeholder="White and double click" />
           <input type="file" type="image" id="file" />
         </div>
-        <button class="saveBtn">save image</button>
       </div>
+      <button class="saveBtn">save image</button>
     </div>
   </body>
 </html>

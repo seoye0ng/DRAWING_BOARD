@@ -1,7 +1,8 @@
 //canvas&color
 const canvas = document.querySelector("#canvas");
 const ctx = canvas.getContext("2d");
-const lineWidth = document.querySelector("lineWidth");
+const lineWidth = document.querySelector(".lineWidth");
+const modeBtn = document.querySelector(".modeBts");
 
 //right btns
 const moreBtn = document.querySelector(".moreBtn");
@@ -16,7 +17,7 @@ const CANVAS_HEIGHT = 700;
 canvas.width = CANVAS_WIDTH;
 canvas.height = CANVAS_HEIGHT;
 
-ctx.lineWidth = 5;
+ctx.lineWidth = lineWidth.value;
 ctx.lineCap = "round";
 ctx.strokestyle = "black";
 
@@ -40,12 +41,29 @@ function stopPainting() {
   painting = false;
 }
 
+let filling = false;
+
+function fillPainting() {
+  ctx.fillRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
+}
+
+function onModeClick() {
+  if (!filling) {
+    filling = true;
+    modeBtn.innerText = "draw";
+    canvas.addEventListener("click", fillPainting);
+  } else {
+    filling = false;
+    modeBtn.innerText = "fill";
+  }
+}
+
 canvas.addEventListener("mousemove", onMouseMove);
 canvas.addEventListener("mousedown", startPainting);
 canvas.addEventListener("mouseup", stopPainting);
 canvas.addEventListener("mouseleave", onMouseMove);
 
-//canvas.addEventListener("mousedown", startPainting);
+modeBtn.addEventListener("click", onModeClick);
 
 //right btns
 moreBtn.addEventListener("click", () => {

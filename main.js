@@ -1,14 +1,36 @@
+//left btn
+const modeBtn = document.querySelector(".modeBts");
+
 //canvas&color
 const canvas = document.querySelector("#canvas");
 const ctx = canvas.getContext("2d");
 const lineWidth = document.querySelector(".lineWidth");
-const modeBtn = document.querySelector(".modeBts");
 
 //right btns
 const moreBtn = document.querySelector(".moreBtn");
 const menuBtns = document.querySelector(".menuBtns");
 const btn = document.querySelector("#menuClosed");
 const saveBtn = document.querySelector(".saveBtn");
+
+//left btn
+let filling = false;
+
+function fillPainting() {
+  ctx.fillRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
+}
+
+function onModeClick() {
+  if (!filling) {
+    filling = true;
+    modeBtn.innerText = "draw";
+    canvas.addEventListener("click", fillPainting);
+  } else {
+    filling = false;
+    modeBtn.innerText = "fill";
+  }
+}
+
+modeBtn.addEventListener("click", onModeClick);
 
 //canvas&color
 const CANVAS_WIDTH = 1000;
@@ -41,29 +63,14 @@ function stopPainting() {
   painting = false;
 }
 
-let filling = false;
-
-function fillPainting() {
-  ctx.fillRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
-}
-
-function onModeClick() {
-  if (!filling) {
-    filling = true;
-    modeBtn.innerText = "draw";
-    canvas.addEventListener("click", fillPainting);
-  } else {
-    filling = false;
-    modeBtn.innerText = "fill";
-  }
-}
-
 canvas.addEventListener("mousemove", onMouseMove);
 canvas.addEventListener("mousedown", startPainting);
 canvas.addEventListener("mouseup", stopPainting);
 canvas.addEventListener("mouseleave", onMouseMove);
 
-modeBtn.addEventListener("click", onModeClick);
+lineWidth.addEventListener("change", (event) => {
+  ctx.lineWidth = event.target.value;
+});
 
 //right btns
 moreBtn.addEventListener("click", () => {

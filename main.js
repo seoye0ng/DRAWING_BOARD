@@ -7,6 +7,7 @@ const destroyBtn = document.querySelector(".destroyBts");
 const canvas = document.querySelector("#canvas");
 const ctx = canvas.getContext("2d");
 const lineWidth = document.querySelector(".lineWidth");
+const colors = document.querySelectorAll(".color");
 
 //right btns
 const moreBtn = document.querySelector(".moreBtn");
@@ -76,6 +77,11 @@ function stopPainting() {
   painting = false;
 }
 
+function onColorClick(event) {
+  ctx.fillStyle = event.target.style.backgroundColor;
+  ctx.strokeStyle = event.target.style.backgroundColor;
+}
+
 canvas.addEventListener("mousemove", onMouseMove);
 canvas.addEventListener("mousedown", startPainting);
 canvas.addEventListener("mouseup", stopPainting);
@@ -84,6 +90,10 @@ canvas.addEventListener("mouseleave", onMouseMove);
 lineWidth.addEventListener("change", (event) => {
   ctx.lineWidth = event.target.value;
 });
+
+Array.from(colors).forEach((color) =>
+  color.addEventListener("click", onColorClick)
+);
 
 //right btns
 moreBtn.addEventListener("click", () => {

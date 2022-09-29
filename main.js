@@ -1,5 +1,7 @@
 //left btn
 const modeBtn = document.querySelector(".modeBts");
+const eraseBtn = document.querySelector(".eraseBts");
+const destroyBtn = document.querySelector(".destroyBts");
 
 //canvas&color
 const canvas = document.querySelector("#canvas");
@@ -30,7 +32,18 @@ function onModeClick() {
   }
 }
 
+function onEraseClick() {
+  ctx.strokeStyle = "white";
+}
+
+function onDestroyClick() {
+  ctx.fillRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
+  ctx.fillStyle = "white";
+}
+
 modeBtn.addEventListener("click", onModeClick);
+eraseBtn.addEventListener("click", onEraseClick);
+destroyBtn.addEventListener("click", onDestroyClick);
 
 //canvas&color
 const CANVAS_WIDTH = 1000;
@@ -41,7 +54,7 @@ canvas.height = CANVAS_HEIGHT;
 
 ctx.lineWidth = lineWidth.value;
 ctx.lineCap = "round";
-ctx.strokestyle = "black";
+//ctx.strokestyle = "black";
 
 let painting = false;
 

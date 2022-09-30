@@ -13,13 +13,16 @@ const colors = document.querySelectorAll(".color");
 const moreBtn = document.querySelector(".moreBtn");
 const menuBtns = document.querySelector(".menuBtns");
 const btn = document.querySelector("#menuClosed");
+
 const saveBtn = document.querySelector(".saveBtn");
 
 //left btn
 let filling = false;
 
 function fillPainting() {
-  ctx.fillRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
+  if (filling) {
+    ctx.fillRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
+  }
 }
 
 function onModeClick() {
@@ -55,6 +58,7 @@ canvas.height = CANVAS_HEIGHT;
 
 ctx.lineWidth = lineWidth.value;
 ctx.lineCap = "round";
+ctx.lineJoin = "round";
 //ctx.strokestyle = "black";
 
 let painting = false;
@@ -85,7 +89,7 @@ function onColorClick(event) {
 canvas.addEventListener("mousemove", onMouseMove);
 canvas.addEventListener("mousedown", startPainting);
 canvas.addEventListener("mouseup", stopPainting);
-canvas.addEventListener("mouseleave", onMouseMove);
+canvas.addEventListener("mouseleave", stopPainting);
 
 lineWidth.addEventListener("change", (event) => {
   ctx.lineWidth = event.target.value;

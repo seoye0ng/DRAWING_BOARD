@@ -13,7 +13,7 @@ const colors = document.querySelectorAll(".color");
 const moreBtn = document.querySelector(".moreBtn");
 const menuBtns = document.querySelector(".menuBtns");
 const btn = document.querySelector("#menuClosed");
-
+const text = document.querySelector("#text");
 const saveBtn = document.querySelector(".saveBtn");
 
 //left btn
@@ -112,6 +112,14 @@ btn.addEventListener("click", () => {
   menuBtns.classList.toggle("showed");
 });
 
+function onTextClick(event) {
+  ctx.lineWidth = 1;
+  ctx.fillStyle = event.target.style.backgroundColor;
+  ctx.font = "50px Souce Sans Pro";
+  ctx.fillText(text.value, event.offsetX, event.offsetY);
+}
+
+canvas.addEventListener("dblclick", onTextClick);
 saveBtn.addEventListener("click", () => {
   alert("Are you sure you want to save this image?");
 });

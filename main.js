@@ -60,6 +60,9 @@ canvas.height = CANVAS_HEIGHT;
 ctx.lineWidth = lineWidth.value;
 ctx.lineCap = "round";
 ctx.lineJoin = "round";
+ctx.fillStyle = "white";
+ctx.fillRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
+
 //ctx.strokestyle = "black";
 
 let painting = false;
@@ -130,8 +133,16 @@ function drawImg(event) {
   };
 }
 
+function onSaveClick() {
+  if (confirm("Are you sure you want to save this image?")) {
+    //save
+    const a = document.createElement("a");
+    a.href = canvas.toDataURL();
+    a.download = "drawing.png";
+    a.click();
+  }
+}
+
 canvas.addEventListener("dblclick", onTextClick);
 imgFile.addEventListener("change", drawImg);
-saveBtn.addEventListener("click", () => {
-  alert("Are you sure you want to save this image?");
-});
+saveBtn.addEventListener("click", onSaveClick);

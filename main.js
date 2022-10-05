@@ -14,6 +14,7 @@ const moreBtn = document.querySelector(".moreBtn");
 const menuBtns = document.querySelector(".menuBtns");
 const btn = document.querySelector("#menuClosed");
 const text = document.querySelector("#text");
+const imgFile = document.querySelector("#file");
 const saveBtn = document.querySelector(".saveBtn");
 
 //left btn
@@ -119,7 +120,18 @@ function onTextClick(event) {
   ctx.fillText(text.value, event.offsetX, event.offsetY);
 }
 
+function drawImg(event) {
+  const file = event.target.files[0];
+  const url = URL.createObjectURL(file);
+  const img = new Image();
+  img.src = url;
+  img.onload = function () {
+    ctx.drawImage(img, 0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
+  };
+}
+
 canvas.addEventListener("dblclick", onTextClick);
+imgFile.addEventListener("change", drawImg);
 saveBtn.addEventListener("click", () => {
   alert("Are you sure you want to save this image?");
 });

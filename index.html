@@ -52,13 +52,16 @@
     <!--side_right_menu-->
     <div class="rightBtns">
       <div class="moreBtn">
-        <i class="fa-solid fa-bars"></i>
+        <i id="menuOpen" class="fa-solid fa-bars"></i>
       </div>
       <div class="menuBtns hide">
         <i id="menuClosed" class="fa-solid fa-xmark"></i>
         <div class="additoryBtns">
           <input type="text" id="text" placeholder="White and double click" />
-          <input type="file" accept="image/*" id="file" />
+          <label for="file">
+            Add Photo
+            <input type="file" accept="image/*" id="file" />
+          </label>
         </div>
       </div>
       <button class="saveBtn">save image</button>

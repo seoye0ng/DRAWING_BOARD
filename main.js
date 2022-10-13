@@ -42,8 +42,8 @@ function onEraseClick() {
 }
 
 function onDestroyClick() {
-  ctx.fillRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
   ctx.fillStyle = "white";
+  ctx.fillRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
 }
 
 modeBtn.addEventListener("click", onModeClick);
@@ -56,12 +56,12 @@ const CANVAS_HEIGHT = 700;
 
 canvas.width = CANVAS_WIDTH;
 canvas.height = CANVAS_HEIGHT;
+ctx.fillStyle = "white";
+ctx.fillRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
 
 ctx.lineWidth = lineWidth.value;
 ctx.lineCap = "round";
 ctx.lineJoin = "round";
-ctx.fillStyle = "white";
-ctx.fillRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
 
 //ctx.strokestyle = "black";
 
@@ -117,10 +117,15 @@ btn.addEventListener("click", () => {
 });
 
 function onTextClick(event) {
+  ctx.save();
   ctx.lineWidth = 1;
   ctx.fillStyle = event.target.style.backgroundColor;
   ctx.font = "50px Souce Sans Pro";
   ctx.fillText(text.value, event.offsetX, event.offsetY);
+  ctx.restore();
+  //save는 지금까지의 ctx들이 저장되고, restore는 save로 돌아간다.
+  //이 함수 호출 후에도 위의 함수에서 바뀐 ctx들로 인해 전에 설정해놨던 ctx들이 영향을 받게 된다.
+  //이럴 경우 다시 저장해둔 곳으로 돌아가고 싶을 때 사용한다.
 }
 
 function drawImg(event) {
